@@ -1,5 +1,3 @@
-# weather-dashboard
-
 # Weather Dashboard
 ## Bootcamp Challenge 06: Server-Side APIs
 
