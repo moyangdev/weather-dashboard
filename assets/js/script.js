@@ -1,14 +1,14 @@
 var cityFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#username");
 var repoContainerEl = document.querySelector("#repos-container");
-var repoSearchTerm = document.querySelector("#repo-search-term");
+var citySearchTerm = document.querySelector("#repo-search-term");
 var lat = "";
 var lon = "";
 
 //function to call API for city coordinates
 var getCityCoords = function(city) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=34d23521a96f3e289197e68214b41647";
-    // "https://api.openweathermap.org/data/2.5/weather?q=" + user + "&appid=34d23521a96f3e289197e68214b41647"
+    // "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=34d23521a96f3e289197e68214b41647"
     // https://api.github.com/users/" + user + "/repos
 
     // // make a request to the url
@@ -23,6 +23,9 @@ var getCityCoords = function(city) {
             console.log(lon);
             
             getWeather(lat, lon);
+            displayRepos(data.items, city);
+            console.log(data);
+            //Temp, wind, humidity, uv index
         });
         } else {
         alert('Error: City Not Found');
@@ -37,9 +40,9 @@ var getCityCoords = function(city) {
 
 //function to call API for city weather using coordinates passed in from getCityCoords
 var getWeather = function(lat, lon) {
-    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=34d23521a96f3e289197e68214b41647";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&exclude=minutely,hourly,alerts&appid=34d23521a96f3e289197e68214b41647";
     //api.openweathermap.org/data/2.5/forecast?lat=39.4334&lon=-84.1666&appid=34d23521a96f3e289197e68214b41647
-    // "https://api.openweathermap.org/data/2.5/weather?q=" + user + "&appid=34d23521a96f3e289197e68214b41647"
+    // "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=34d23521a96f3e289197e68214b41647"
     // https://api.github.com/users/" + user + "/repos
 
     //make a request to the url
@@ -48,12 +51,10 @@ var getWeather = function(lat, lon) {
         // request was successful
         if (response.ok) {
         response.json().then(function(data) {
-            console.log(response);
         });
         } else {
         alert('Error: City Not Found');
         }
-        console.log(response);
     })
     .catch(function(error) {
         // Notice this `.catch()` getting chained onto the end of the `.then()` method
@@ -73,6 +74,26 @@ var formSubmitHandler = function(event) {
     alert("Please enter a city name");
     }
     console.log(event);
+};
+
+var displayRepos = function(weathers, searchTerm) {
+    // clear old content
+    repoContainerEl.textContent = searchTerm;
+    citySearchTerm.textContent = searchTerm;
+
+        // create a container for each repo
+        var repoEl = document.createElement("div");
+        repoEl.classList = "list-item flex-row justify-space-between align-center";
+    
+        // create a span element to hold repository name
+        var titleEl = document.createElement("span");
+        titleEl.textContent = searchTerm;
+    
+        // append to container
+        repoEl.appendChild(titleEl);
+    
+        // append container to the dom
+        repoContainerEl.appendChild(repoEl);
 };
 
 // var displayRepos = function(cities, searchTerm) {
