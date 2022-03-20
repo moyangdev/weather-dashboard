@@ -16,7 +16,7 @@
         <div class="card">
         <h3 class="card-header text-uppercase">Search By City</h3>
         <form id="city-form" class="card-body">
-            <label class="form-label" for="username">Search for a City:</label>
+            <label class="form-label" for="cityname">Search for a City:</label>
             <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
             <button type="submit" class="btn">Search</button>
         </form>
@@ -25,8 +25,15 @@
     <div class="col-12 col-md-9">
         <h2 class="subtitle"><span id="city-search-term"></span></h2>
         <div id="currentWeather-container" class="list-group"></div>
+        <div class = "col-9">
+            <div class = "row"> 
+                <h3 id = "fiveDayForecast" class ="hide">5-Day Forecast: </h3>
+            </div>
+            <div class = "row allForecastData"></div>
+        </div>
     </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>

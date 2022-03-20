@@ -42,6 +42,10 @@ p {
 font-size: 1.2rem;
 }
 
+.hide {
+    display: none;
+}
+
 .uv-favorable {
     color: white;
     background-color: green;
@@ -55,6 +59,19 @@ font-size: 1.2rem;
 .uv-severe {
     color: white;
     background-color: red;
+}
+
+.allForecastData{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.dayForecast{
+    background-color:#33475A;
+    border-radius: 4px;
+    width:18%;
+    padding-left: 10px;
 }
 
 .btn {
@@ -82,29 +99,6 @@ box-shadow: 2px 2px var(--dark);
 
 .btn-inline {
 display: inline;
-}
-
-.btn-back {
-border-radius: var(--border-radius);
-color: var(--primary);
-border: none;
-outline: none;
-background-color: var(--light-dark);
-box-shadow: 3px 3px var(--secondary);
-transform: translate(-1px, -1px);
-display: inline-block;
-width: auto;
-margin-top: 20px;
-padding: 15px;
-text-decoration: none;
-font-size: 1.2rem;
-}
-
-.btn-back:hover {
-color: var(--primary);
-background-color: var(--tertiary);
-transform: translate(0, 0);
-box-shadow: 2px 2px var(--dark);
 }
 
 .hero {
@@ -150,14 +144,6 @@ padding: 2px 5px;
 margin: 0 5px;
 background-color: rgba(255,255,255, 1);
 border-radius: var(--border-radius);
-}
-
-.icon-danger {
-color: rgb(255, 70, 70);
-}
-
-.icon-success {
-color: rgb(29, 153, 255);
 }
 
 /* CARDS */
