@@ -3,6 +3,7 @@ var cityInputEl = document.querySelector("#cityname");
 var currentWeatherEl = document.querySelector("#currentWeather-container");
 var citySearchTerm = document.querySelector("#city-search-term");
 var fiveDayForecastEl = document.getElementById("fiveDayForecast");
+var box1El = document.getElementById("box1");
 var lat = "";
 var lon = "";
 
@@ -20,6 +21,7 @@ var getCityCoords = function(city) {
             var lon = data.coord.lon;
             var icon = data.weather[0].icon;
             currentWeatherEl.textContent = "";
+            box1El.classList.remove("hide");
             fiveDayForecastEl.classList.remove("hide");
             getWeather(lat, lon, icon);
             currentIcon = `<img src = http://openweathermap.org/img/wn/${icon}.png>`

@@ -46,6 +46,12 @@ font-size: 1.2rem;
     display: none;
 }
 
+#box1 {
+    border: black 2px solid;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
 .uv-favorable {
     color: white;
     background-color: green;
