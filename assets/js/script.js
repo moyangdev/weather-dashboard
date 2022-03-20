@@ -41,7 +41,7 @@ var getCityCoords = function(city) {
 
 //function to call API for city weather using coordinates passed in from getCityCoords
 var getWeather = function(lat, lon) {
-    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&exclude=minutely,hourly,alerts&appid=34d23521a96f3e289197e68214b41647";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude=minutely,hourly,alerts&appid=34d23521a96f3e289197e68214b41647";
     //api.openweathermap.org/data/2.5/forecast?lat=39.4334&lon=-84.1666&appid=34d23521a96f3e289197e68214b41647
     // "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=34d23521a96f3e289197e68214b41647"
     // https://api.github.com/users/" + user + "/repos
@@ -53,17 +53,41 @@ var getWeather = function(lat, lon) {
         if (response.ok) {
         response.json().then(function(data) {
             //get current temperature
-            var temp = data.list[1].main.temp;
+            var temp = data.current.temp;
             //convert temperature from Kelvin to Fahrenheit
             temp = Math.round(((temp - 273.15) * 1.8 + 32));
-            //display temperature on screen
-            repoContainerEl.textContent = 'Temperature: ' + temp + '°F';
-            console.log(temp);
 
-            // for (var i = 0; i < response.list.length; i++) {
-            //     var data = response.list[i];
-            //     repoContainerEl.textContent = data.main.temp;
-            // }
+            //get wind speed
+            var wind = data.current.wind_speed;
+
+            //get humidity %
+            var humid = data.current.humidity;
+
+            //get UV index
+            var uv = data.current.uvi;
+
+            //display data on screen
+            //temperature
+            var tempEl = document.createElement('p');
+            tempEl.textContent = "Temp: " + temp + " °F";
+
+            //wind speed
+            var windEl = document.createElement('p');
+            windEl.textContent = "Wind: " + wind + " MPH";
+
+            //humidity
+            var humidEl = document.createElement('p');
+            humidEl.textContent = "Humidity: " + humid + " %";
+
+            //uv index
+            var uvEl = document.createElement('p');
+            uvEl.textContent = "UV Index: " + uv;
+
+            repoContainerEl.appendChild(tempEl);
+            repoContainerEl.appendChild(windEl);
+            repoContainerEl.appendChild(humidEl);
+            repoContainerEl.appendChild(uvEl);
+        
         });
         } else {
         alert('Error: City Not Found');
