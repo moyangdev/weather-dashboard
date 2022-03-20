@@ -1,5 +1,5 @@
-var cityFormEl = document.querySelector("#user-form");
-var cityInputEl = document.querySelector("#username");
+var cityFormEl = document.querySelector("#city-form");
+var cityInputEl = document.querySelector("#cityname");
 var repoContainerEl = document.querySelector("#repos-container");
 var citySearchTerm = document.querySelector("#repo-search-term");
 var lat = "";
@@ -19,14 +19,18 @@ var getCityCoords = function(city) {
         response.json().then(function(data) {
             var lat = data.coord.lat;
             var lon = data.coord.lon;
-            console.log(lat);
-            console.log(lon);
+            var icon = data.weather[0].icon;
+            // console.log(lat);
+            // console.log(lon);
+            // console.log(icon);
 
-            citySearchTerm.textContent = city;
-            getWeather(lat, lon);
-            
+            //citySearchTerm.textContent = city;
+
+            getWeather(lat, lon, icon);
+            currentIcon = `<img src = http://openweathermap.org/img/wn/${icon}.png>`
+            citySearchTerm.innerHTML = city + ': ' + '(' + moment().format('l') + ')' + currentIcon;
+
             console.log(data);
-            //Temp, wind, humidity, uv index
         });
         } else {
         alert('Error: City Not Found');
@@ -102,7 +106,7 @@ var getWeather = function(lat, lon) {
 var formSubmitHandler = function(event) {
     event.preventDefault();
 
-    var cityname = cityInputEl.value.trim();
+    var cityname = cityInputEl.value.trim().toUpperCase();
 
     if (cityname) {
     getCityCoords(cityname);
