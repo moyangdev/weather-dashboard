@@ -25,7 +25,7 @@ var getCityCoords = function(city) {
             // console.log(icon);
 
             //citySearchTerm.textContent = city;
-
+            repoContainerEl.textContent = "";
             getWeather(lat, lon, icon);
             currentIcon = `<img src = http://openweathermap.org/img/wn/${icon}.png>`
             citySearchTerm.innerHTML = city + ': ' + '(' + moment().format('l') + ')' + currentIcon;
@@ -85,13 +85,26 @@ var getWeather = function(lat, lon) {
 
             //uv index
             var uvEl = document.createElement('p');
-            uvEl.textContent = "UV Index: " + uv;
+            uvEl.textContent = "UV Index: ";
 
+            var uvEl2 = document.createElement('span');
+            uvEl2.textContent = uv;
+            
+            if (uv<=2){
+                uvEl2.classList.add("uv-favorable");
+            }
+            else if(uv<=7){
+                uvEl2.classList.add("uv-moderate");
+            }
+            else{
+                uvEl2.classList.add("uv-severe");
+            }
+            
             repoContainerEl.appendChild(tempEl);
             repoContainerEl.appendChild(windEl);
             repoContainerEl.appendChild(humidEl);
             repoContainerEl.appendChild(uvEl);
-        
+            uvEl.appendChild(uvEl2);
         });
         } else {
         alert('Error: City Not Found');
