@@ -21,9 +21,10 @@ var getCityCoords = function(city) {
             var lon = data.coord.lon;
             console.log(lat);
             console.log(lon);
-            
+
+            citySearchTerm.textContent = city;
             getWeather(lat, lon);
-            displayRepos(data.items, city);
+            
             console.log(data);
             //Temp, wind, humidity, uv index
         });
@@ -51,6 +52,18 @@ var getWeather = function(lat, lon) {
         // request was successful
         if (response.ok) {
         response.json().then(function(data) {
+            //get current temperature
+            var temp = data.list[1].main.temp;
+            //convert temperature from Kelvin to Fahrenheit
+            temp = Math.round(((temp - 273.15) * 1.8 + 32));
+            //display temperature on screen
+            repoContainerEl.textContent = 'Temperature: ' + temp + '°F';
+            console.log(temp);
+
+            // for (var i = 0; i < response.list.length; i++) {
+            //     var data = response.list[i];
+            //     repoContainerEl.textContent = data.main.temp;
+            // }
         });
         } else {
         alert('Error: City Not Found');
@@ -79,7 +92,7 @@ var formSubmitHandler = function(event) {
 var displayRepos = function(weathers, searchTerm) {
     // clear old content
     repoContainerEl.textContent = searchTerm;
-    citySearchTerm.textContent = searchTerm;
+    //citySearchTerm.textContent = searchTerm;
 
         // create a container for each repo
         var repoEl = document.createElement("div");
