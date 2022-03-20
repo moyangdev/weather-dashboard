@@ -2,6 +2,7 @@ var cityFormEl = document.querySelector("#city-form");
 var cityInputEl = document.querySelector("#cityname");
 var currentWeatherEl = document.querySelector("#currentWeather-container");
 var citySearchTerm = document.querySelector("#city-search-term");
+var recentCitiesEl = document.querySelector("#recentCities");
 var fiveDayForecastEl = document.getElementById("fiveDayForecast");
 var box1El = document.getElementById("box1");
 var lat = "";
@@ -26,6 +27,7 @@ var getCityCoords = function(city) {
             getWeather(lat, lon, icon);
             currentIcon = `<img src = http://openweathermap.org/img/wn/${icon}.png>`
             citySearchTerm.innerHTML = city + ': ' + '(' + moment().format('l') + ')' + currentIcon;
+
         });
         } else {
         alert('Error: City Not Found');
@@ -140,7 +142,9 @@ var forecastData = function (data) {
         eachForecast.appendChild(addWind);
         eachForecast.appendChild(addHumid);
         allForecastData.append(eachForecast);
+
     } 
+    loadCities();
 }
 
 var formSubmitHandler = function(event) {
@@ -150,6 +154,7 @@ var formSubmitHandler = function(event) {
 
     if (cityname) {
     getCityCoords(cityname);
+    localStorage.setItem('city', JSON.stringify(cityname));
     cityInputEl.value = "";
     } else {
     alert("Please enter a city name");
@@ -177,30 +182,14 @@ var displayRepos = function(weathers, searchTerm) {
         currentWeatherEl.appendChild(repoEl);
 };
 
-// var displayRepos = function(cities, searchTerm) {
-//     // clear old content
-//     currentWeatherEl.textContent = "";
-//     repoSearchTerm.textContent = searchTerm;
+var loadCities = function () {
+    cityname = JSON.parse(localStorage.getItem('city'));
+    console.log(cityname);
 
-//     // loop over repos
-//     for (var i = 0; i < cities.length; i++) {
-//         // format repo name
-//         var repoName = cities[i].owner.id + "/" + cities[i].name;
-//         console.log(repoName);
-//         // create a container for each repo
-//         var repoEl = document.createElement("div");
-//         repoEl.classList = "list-item flex-row justify-space-between align-center";
-    
-//         // create a span element to hold repository name
-//         var titleEl = document.createElement("span");
-//         titleEl.textContent = repoName;
-    
-//         // append to container
-//         repoEl.appendChild(titleEl);
-    
-//         // append container to the dom
-//         currentWeatherEl.appendChild(repoEl);
-//     }
-// };
+    var cityEl = document.createElement('button');
+    cityEl.classList.add("btn");
+    cityEl.textContent = cityname;
+    recentCitiesEl.appendChild(cityEl);
+}
 
 cityFormEl.addEventListener("submit", formSubmitHandler);
