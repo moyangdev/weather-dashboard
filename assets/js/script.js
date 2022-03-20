@@ -1,7 +1,7 @@
 var cityFormEl = document.querySelector("#city-form");
 var cityInputEl = document.querySelector("#cityname");
-var repoContainerEl = document.querySelector("#repos-container");
-var citySearchTerm = document.querySelector("#repo-search-term");
+var currentWeatherEl = document.querySelector("#currentWeather-container");
+var citySearchTerm = document.querySelector("#city-search-term");
 var lat = "";
 var lon = "";
 
@@ -25,7 +25,7 @@ var getCityCoords = function(city) {
             // console.log(icon);
 
             //citySearchTerm.textContent = city;
-            repoContainerEl.textContent = "";
+            currentWeatherEl.textContent = "";
             getWeather(lat, lon, icon);
             currentIcon = `<img src = http://openweathermap.org/img/wn/${icon}.png>`
             citySearchTerm.innerHTML = city + ': ' + '(' + moment().format('l') + ')' + currentIcon;
@@ -100,10 +100,10 @@ var getWeather = function(lat, lon) {
                 uvEl2.classList.add("uv-severe");
             }
             
-            repoContainerEl.appendChild(tempEl);
-            repoContainerEl.appendChild(windEl);
-            repoContainerEl.appendChild(humidEl);
-            repoContainerEl.appendChild(uvEl);
+            currentWeatherEl.appendChild(tempEl);
+            currentWeatherEl.appendChild(windEl);
+            currentWeatherEl.appendChild(humidEl);
+            currentWeatherEl.appendChild(uvEl);
             uvEl.appendChild(uvEl2);
         });
         } else {
@@ -132,7 +132,7 @@ var formSubmitHandler = function(event) {
 
 var displayRepos = function(weathers, searchTerm) {
     // clear old content
-    repoContainerEl.textContent = searchTerm;
+    currentWeatherEl.textContent = searchTerm;
     //citySearchTerm.textContent = searchTerm;
 
         // create a container for each repo
@@ -147,12 +147,12 @@ var displayRepos = function(weathers, searchTerm) {
         repoEl.appendChild(titleEl);
     
         // append container to the dom
-        repoContainerEl.appendChild(repoEl);
+        currentWeatherEl.appendChild(repoEl);
 };
 
 // var displayRepos = function(cities, searchTerm) {
 //     // clear old content
-//     repoContainerEl.textContent = "";
+//     currentWeatherEl.textContent = "";
 //     repoSearchTerm.textContent = searchTerm;
 
 //     // loop over repos
@@ -172,7 +172,7 @@ var displayRepos = function(weathers, searchTerm) {
 //         repoEl.appendChild(titleEl);
     
 //         // append container to the dom
-//         repoContainerEl.appendChild(repoEl);
+//         currentWeatherEl.appendChild(repoEl);
 //     }
 // };
 
