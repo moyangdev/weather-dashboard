@@ -1,7 +1,7 @@
 :root {
---primary: #ccdad1;
---secondary: #9caea9;
---tertiary: #788585;
+--primary: white;
+--secondary: black;
+--tertiary: #B7B7B7;
 --light-dark: #6f6866;
 --dark: #38302e;
 --border-radius: .3rem;
@@ -46,31 +46,41 @@ font-size: 1.2rem;
     display: none;
 }
 
+/* container for current weather */
 #box1 {
-    border: black 2px solid;
+    border: var(--secondary) 2px solid;
     padding-left: 10px;
     margin-bottom: 20px;
 }
 
+/* uv color group start */
 .uv-favorable {
-    color: white;
+    color: var(--primary);
     background-color: green;
+    padding: 3px 10px;
+    border-radius: var(--border-radius);
 }
 
 .uv-moderate {
-    color: white;
+    color: var(--primary);
     background-color: orange;
+    padding: 3px 10px;
+    border-radius: var(--border-radius);
 }
 
 .uv-severe {
-    color: white;
+    color: var(--primary);
     background-color: red;
+    padding: 3px 10px;
+    border-radius: var(--border-radius);
 }
+/* uv color group end */
 
+/* forecast style start */
 .allForecastData{
     display: flex;
     justify-content: space-between;
-    color: white;
+    color: var(--primary);
 }
 
 .dayForecast{
@@ -79,38 +89,44 @@ font-size: 1.2rem;
     width:18%;
     padding-left: 10px;
 }
+/* forecast style end */
 
+/* button style start */
 .btn {
 font-size: 1.3rem;
 text-decoration:none;
 padding: 6px 5px;
 width: 100%;
 display: block;
-margin: 5px 0;
+margin: 15px 0;
 border-radius: var(--border-radius);
-color: var(--primary);
+color: var(--secondary);
 border: none;
 outline: none;
-background-color: var(--light-dark);
-box-shadow: 3px 3px var(--dark);
-transform: translate(-1px, -1px);
-}
-
-.btn:hover {
-color: var(--primary);
 background-color: var(--tertiary);
-transform: translate(0, 0);
-box-shadow: 2px 2px var(--dark);
+transform: translate(-1px, -1px);
 }
 
 .btn-inline {
 display: inline;
 }
 
+.search {
+    background-color: #5AA2E9;
+    color: var(--primary);
+}
+/* forecast style end */
+
+.line {
+    border-bottom: gray solid 3px;
+}
+
+/* hero style start */
 .hero {
 padding: 3% 4%;
-background-color: var(--dark);
 color: var(--primary);
+text-align: center;
+background: linear-gradient(90deg, #3B6EC3 0%, #303F8F 50%, #230555 90%);
 }
 
 .hero p {
@@ -119,14 +135,13 @@ max-width: 75%;
 
 .app-title {
 font-size: 3rem;
-background-color: var(--primary);
-color: var(--dark);
+color: var(--primary);
 padding: 0 10px;
 display: inline-block;
-border-radius: var(--border-radius);
-box-shadow: 6px 5px var(--light-dark);
 }
+/* hero style end */
 
+/* list style end */
 .list-group {
 padding: 0;
 list-style: none;
@@ -144,31 +159,7 @@ text-decoration: none;
 .list-item:hover {
 background-color: var(--dark);
 }
-
-.status-icon {
-padding: 2px 5px;
-margin: 0 5px;
-background-color: rgba(255,255,255, 1);
-border-radius: var(--border-radius);
-}
-
-/* CARDS */
-.card {
-margin: 0 0 20px 0;
-border: 3px solid var(--dark);
-border-radius: var(--border-radius);
-}
-
-.card-header {
-color: var(--primary);
-background-color: var(--dark);
-padding: 2.5%;
-border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
-}
-
-.card-body {
-padding: 2.5%;
-}
+/* list style end */
 
 /* FORM */
 .form-label,

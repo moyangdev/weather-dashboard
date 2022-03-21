@@ -120,7 +120,7 @@ var forecastData = function (data) {
         var eachForecast = document.createElement('div');
         eachForecast.setAttribute('id', '#day' + i);
         eachForecast.setAttribute('class','dayForecast');
-        //console.log(eachForecast);
+        //create variable add p tag for each data point
         var addDate = document.createElement('P');
         var addIcon = document.createElement('p');
         var addTemp = document.createElement('p');
