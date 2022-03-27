@@ -1,6 +1,13 @@
 # Weather Dashboard
 ## Bootcamp Challenge 06: Server-Side APIs
 
+## Description
+This simple weather dashboard allows users to check any city's weather for the current day as well as a 5-day forecast. It shows data for temperature, wind, humidity, and UV Index.
+
+## Technologies
+This app will run in the browser. It uses HTML, CSS, Javascript, and OpenWeather API.
+
+## Instructions
 <b>User Story:</b><br />
 AS A traveler<br />
 I WANT to see the weather outlook for multiple cities<br />
@@ -23,5 +30,9 @@ THEN I am again presented with current and future conditions for that city<br />
 The following animation shows the web application's appearance and functionality:
 ![06-server-side-apis-homework-demo](https://user-images.githubusercontent.com/98504854/158084878-8a1e4d79-10c6-48cf-b9ef-8505b0d83c43.png)
 
+## Links
 <b>Link to deployed application:</b><br />
 https://moyangdev.github.io/weather-dashboard/
+
+<b>Link to OpenWeather API:</b><br />
+https://openweathermap.org/api/one-call-api
